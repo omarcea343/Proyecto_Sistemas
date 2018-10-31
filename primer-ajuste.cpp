@@ -1,11 +1,11 @@
-// C++ implementation mejor ajuste 
+// C++ implementation mejor-ajuste
 #include<cstring>
 #include <iostream>
 using namespace std; 
 
 // Function to allocate memory to blocks as per Best fit 
 // algorithm 
-void bestFit(int blockSize[], int m, int processSize[], int n) 
+void mejor_ajuste(int tamblock[], int m, int proceso[], int n) 
 { 
 	// Stores block id of the block allocated to a 
 	// process 
@@ -18,50 +18,54 @@ void bestFit(int blockSize[], int m, int processSize[], int n)
 	for (int i=0; i<n; i++) 
 	{ 
 		// Busca el mejor bloque en cual guardar que es en el que sobre menos espacio 
-		int bestIdx = -1; 
+		int Id = -1; 
 		for (int j=0; j<m; j++) 
 		{ 
-			if (blockSize[j] >= processSize[i]) 
+			if (tamblock[j] >= proceso[i]) 
 			{ 
-				if (bestIdx == -1) 
-					bestIdx = j; 
-				else if (blockSize[bestIdx] > blockSize[j]) 
-					bestIdx = j; 
+				if (Id == -1) 
+					Id = j; 
+				else if (tamblock[Id] > tamblock[j]) 
+					Id = j; 
 			} 
 		} 
 
 		// Aqui guarda el proceso en el bloque 
-		if (bestIdx != -1) 
+		if (Id != -1) 
 		{ 
 			// Guarda el proceso p[i] en el bloque en posicion j  
-			allocation[i] = bestIdx; 
+			allocation[i] = Id; 
 
 			// Quita  los espacios de memoria ya utilizados 
-			blockSize[bestIdx] -= processSize[i]; 
+			tamblock[Id] -= proceso[i]; 
 		} 
 	} 
 
-	cout << "\nProcess No.\tProcess Size\tBlock no.\n"; 
+	cout << "\n [ID, TAMAÑO, CUANTO]\n"; 
 	for (int i = 0; i < n; i++) 
 	{ 
-		cout << " " << i+1 << "\t\t" << processSize[i] << "\t\t"; 
+		cout << " " << i+1 << "\t\t" << proceso[i] << "\t\t"; 
 		if (allocation[i] != -1) 
 			cout << allocation[i] + 1; 
 		else
-			cout << "Not Allocated"; 
+			cout << "No colocado"; 
 		cout << endl; 
 	} 
 } 
 
+void procesando(int tamblock[], int m, int proceso[], int n){
 
+		for (int i = 0; i<n; )	
+	
+}
 int main() 
 { 
-	int blockSize[] = {100, 500, 200, 300, 600}; 
-	int processSize[] = {212, 417, 112, 426}; 
-	int m = sizeof(blockSize)/sizeof(blockSize[0]); 
-	int n = sizeof(processSize)/sizeof(processSize[0]); 
+	int tamblock[] = {100, 500, 200, 300, 600};  //tamaño estatico de los bloques 
+	int proceso[] = {212, 417, 112, 426};   //los procesos ya tienen asignados los tamaños 
+	int m = sizeof(tamblock)/sizeof(tamblock[0]); 
+	int n = sizeof(proceso)/sizeof(proceso[0]); 
 
-	bestFit(blockSize, m, processSize, n); 
+	mejor_ajuste(tamblock, m, proceso, n); 
 
 	return 0 ; 
 } 
