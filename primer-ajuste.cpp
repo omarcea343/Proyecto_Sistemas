@@ -34,7 +34,7 @@ void mejor_ajuste(int tamblock[], int m, int proceso[], int n){
 		} 
 	} 
 
-	cout << "\n [ID, TAMAÑO, CUANTO]\n"; 
+	cout << "\n [ID, TAMANO, CUANTO]\n"; 
 	for (int i = 0; i < n; i++){ 
 		cout << " " << i+1 << "\t\t" << proceso[i] << "\t\t"; 
 		if (allocation[i] != -1) 
