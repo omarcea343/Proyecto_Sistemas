@@ -1,28 +1,22 @@
-// C++ implementation mejor-ajuste
-#include<cstring>
+//Implementation Mejor Ajuste en C++
+
 #include <iostream>
+#include<cstring>
+
 using namespace std; 
 
-// Function to allocate memory to blocks as per Best fit 
-// algorithm 
-void mejor_ajuste(int tamblock[], int m, int proceso[], int n) 
-{ 
-	// Stores block id of the block allocated to a 
-	// process 
+//Funcion que asigna memoria a los bloques por metodo del Mejor Ajuste
+void mejor_ajuste(int tamblock[], int m, int proceso[], int n){ 
+	//Guarda el id del bloque al que se asigno el proceso
 	int allocation[n]; 
-
-	// inicializa los bloques de memoria como libres
+	//inicializa los bloques de memoria como libres
 	memset(allocation, -1, sizeof(allocation)); 
-
 	// Busca cual bloque esta disponible para usar  y de acuerdo a su tamaño decide si lo usa o no
-	for (int i=0; i<n; i++) 
-	{ 
+	for (int i=0; i<n; i++){
 		// Busca el mejor bloque en cual guardar que es en el que sobre menos espacio 
 		int Id = -1; 
-		for (int j=0; j<m; j++) 
-		{ 
-			if (tamblock[j] >= proceso[i]) 
-			{ 
+		for (int j=0; j<m; j++){ 
+			if (tamblock[j] >= proceso[i]){ 
 				if (Id == -1) 
 					Id = j; 
 				else if (tamblock[Id] > tamblock[j]) 
@@ -31,8 +25,7 @@ void mejor_ajuste(int tamblock[], int m, int proceso[], int n)
 		} 
 
 		// Aqui guarda el proceso en el bloque 
-		if (Id != -1) 
-		{ 
+		if (Id != -1){ 
 			// Guarda el proceso p[i] en el bloque en posicion j  
 			allocation[i] = Id; 
 
@@ -42,8 +35,7 @@ void mejor_ajuste(int tamblock[], int m, int proceso[], int n)
 	} 
 
 	cout << "\n [ID, TAMAÑO, CUANTO]\n"; 
-	for (int i = 0; i < n; i++) 
-	{ 
+	for (int i = 0; i < n; i++){ 
 		cout << " " << i+1 << "\t\t" << proceso[i] << "\t\t"; 
 		if (allocation[i] != -1) 
 			cout << allocation[i] + 1; 
@@ -55,11 +47,13 @@ void mejor_ajuste(int tamblock[], int m, int proceso[], int n)
 
 void procesando(int tamblock[], int m, int proceso[], int n){
 
-		for (int i = 0; i<n; )	
+		for (int i = 0; i<n; ){
+		}
 	
 }
-int main() 
-{ 
+
+int main(){
+	
 	int tamblock[] = {100, 500, 200, 300, 600};  //tamaño estatico de los bloques 
 	int proceso[] = {212, 417, 112, 426};   //los procesos ya tienen asignados los tamaños 
 	int m = sizeof(tamblock)/sizeof(tamblock[0]); 
