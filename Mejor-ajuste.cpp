@@ -8,7 +8,7 @@ void procesando(int tamblock[], int proceso[], int allocation[], int n){
  
  for(int j=0; j<n; j++){
 
- 	for (int i=0; i<4; j++){
+ 	for (int i=0; i<4; i++){
 		cout << "["<<i+1<<", "<<proceso[i]<<", "<< allocation[i] + 1 <<"]";
 		allocation[i] = allocation [i];
 		if (allocation [i] = 0)
