@@ -3,9 +3,6 @@
 #include <iostream>
 using namespace std; 
 
-// Function to allocate memory to blocks as per Best fit 
-// algorithm 
-
 void procesando(int tamblock[], int proceso[], int allocation[], int n){
  cout<<"\nEjecutando..."<<endl;
  
