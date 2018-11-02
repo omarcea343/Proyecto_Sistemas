@@ -1,2 +1,2 @@
 # Sistemas
-Manejo de memoria
+Metodos de manejo de memoria
