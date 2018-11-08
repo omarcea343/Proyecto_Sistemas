@@ -22,11 +22,20 @@ int main(){
 	//Ciclo para generar el tamaño de memoria para todos los procesos generados
     for(i = 1; i <= j; i++){
         p[i] = rand()%1000;//Genera el tamaño de un proceso                
-    }     
+    }
     
-	cout<<"\n******** welcome to menu driven program of memory management**********\n1.first fit\n2.best fit\n3.worst fit\nenter choice:\t";
+    //Menu
+	cout<<"Seleccion de Algoritmo para Manejo de Memoria"<<endl;
+	cout<<endl<<"\t1. Primer Ajuste"<<endl;
+	cout<<"\t2. Mejor Ajuste"<<endl;
+	cout<<"\t3. Peor Ajuste"<<endl;
+	
+	//Seleccion
+	cout<<endl<<"Ingresa Seleccion: ";
     cin>>c;
-    switch(c){
+    
+    //Manejo de algoritmo seleccionado
+	switch(c){
     	case 1:
         	for(i=1;i<=j;i++){
         		flag=1;
