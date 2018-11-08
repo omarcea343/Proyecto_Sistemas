@@ -6,19 +6,19 @@
 
 using namespace std;
 
-void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m[]);
+void primerAjuste(int p[], int po[], int m[], int n, int j);
 void mejorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j);
 void peorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j);
 
 int main(){
-	int c, i, j, k, n, l, m[10], p[10], po[20], flag, z, y, temp, temp1;//Declaracion de variables
+	int c, j, k, n, l, m[10], p[10], po[20], flag, z, y, temp, temp1;//Declaracion de variables
 	
 	srand(time(NULL));//Numeros aleatorios
 	
 	n = rand()%10;//Genera bloques de memoria aleatorios
 	
     //Ciclo para generar el tamaño de memoria para todos los bloques generados
-    for(i = 1; i <= n; i++){
+    for(int i = 1; i <= n; i++){
         m[i] = rand()%1000;//Genera el tamaño de memoria para un bloque generado 
         po[i]=i;       
     }
@@ -26,7 +26,7 @@ int main(){
     j = rand()%10;//Genera el numero de procesos a ingresar a la memoria
     
 	//Ciclo para generar el tamaño de memoria para todos los procesos generados
-    for(i = 1; i <= j; i++){
+    for(int i = 1; i <= j; i++){
         p[i] = rand()%1000;//Genera el tamaño de un proceso                
     }
     
@@ -43,7 +43,7 @@ int main(){
     //Manejo de algoritmo seleccionado
 	switch(c){
     	case 1:
-			primerAjuste(i,j,p,flag,n,k,po,m);//Funcion Primer Ajuste
+			primerAjuste(p,po,m,n,j);//Funcion Primer Ajuste
     	case 2:
         	mejorAjuste(y,n,z,m,temp1,temp,po,flag,k,p,i,j);//Funcion Mejor Ajuste
         case 3:
@@ -53,23 +53,25 @@ int main(){
     return 0;
 }
 
-void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m[]){
-    for(i=1;i<=j;i++){
-        flag=1;
-          	for(k=1;k<=n;k++){
-          		if(p[i]<=m[k]){
-			        cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
-             		m[k]=m[k]-p[i];
-             		break;           
-          		}
-          		else{
-          			flag++;  
-          		}
-      		}   
-      		if(flag>n){
-      			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
-      		}           
-      	}
+void primerAjuste(int p[], int po[], int m[], int n, int j){
+    int flag, i, k;
+	
+	for(i = 1; i <= j; i++){
+        flag = 1;
+        for(k = 1; k <= n; k++){
+         	if(p[i ]<= m[k]){
+			    cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
+             	m[k] = m[k] - p[i];
+             	break;           
+          	}
+          	else{
+          		flag++;  
+          	}
+      	}   
+      	if(flag > n){
+      		cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
+      	}           
+    }
 }
 
 void mejorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j){
