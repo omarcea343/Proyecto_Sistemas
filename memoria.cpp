@@ -7,6 +7,8 @@
 using namespace std;
 
 void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m[]);
+void mejorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j);
+void peorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j);
 
 int main(){
 	int c, i, j, k, n, l, m[10], p[10], po[20], flag, z, y, temp, temp1;//Declaracion de variables
@@ -41,68 +43,12 @@ int main(){
     //Manejo de algoritmo seleccionado
 	switch(c){
     	case 1:
-			primerAjuste(i,j,p,flag,n,k,po,m);
+			primerAjuste(i,j,p,flag,n,k,po,m);//Funcion Primer Ajuste
     	case 2:
-        	for(y=1;y<=n;y++){
-	        	for(z=y;z<=n;z++){
-        			if(m[y]>m[z]){
-        				temp=m[y];
-          				m[y]=m[z];
-          				m[z]=temp;
-          				temp1=po[y]; 
-          				po[y]=po[z];
-          				po[z]=temp1;            
-          			}                 
-          		}             
-            }
-            for(i=1;i<=j;i++){
-            	flag=1;
-          		for(k=1;k<=n;k++){
-          			if(p[i]<=m[k]){
-             			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
-             			m[k]=m[k]-p[i];
-             			break;           
-          			}
-          			else{
-            			flag++;  
-          			}
-      			}   
-      			if(flag>n){
-         			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
-      			}           
-      		}
-            break;
+        	mejorAjuste(y,n,z,m,temp1,temp,po,flag,k,p,i,j);//Funcion Mejor Ajuste
         case 3:
-        	for(y=1;y<=n;y++){
-          		for(z=y;z<=n;z++){
-          			if(m[y]<m[z]){
-          				temp=m[y];
-          				m[y]=m[z];
-          				m[z]=temp;
-          				temp1=po[y]; 
-          				po[y]=po[z];
-          				po[z]=temp1;            
-          			}                 
-          		}             
-            }
-            for(i=1;i<=j;i++){
-            	flag=1;
-          		for(k=1;k<=n;k++){
-          			if(p[i]<=m[k]){
-             			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
-             			m[k]=m[k]-p[i];
-             			break;           
-          			}
-          			else{
-            			flag++;  
-          			}
-      			}   
-      			if(flag>n){
-         			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
-      			}           
-      		}
-            break;
-    }  
+        	peorAjuste(y,n,z,m,temp1,temp,po,flag,k,p,i,j);//Funcion Peor Ajuste
+    }
 
     return 0;
 }
@@ -124,4 +70,67 @@ void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m
       			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
       		}           
       	}
+}
+
+void mejorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j){
+	for(y=1;y<=n;y++){
+	    for(z=y;z<=n;z++){
+        	if(m[y]>m[z]){
+        		temp=m[y];
+          		m[y]=m[z];
+          		m[z]=temp;
+          		temp1=po[y]; 
+          		po[y]=po[z];
+          		po[z]=temp1;            
+          	}                 
+        }             
+    }
+    
+    for(i=1;i<=j;i++){
+    	flag=1;
+        for(k=1;k<=n;k++){
+          	if(p[i]<=m[k]){
+             	cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
+             	m[k]=m[k]-p[i];
+             	break;           
+          	}
+          	else{
+            flag++;  
+          	}
+      	}   
+      	if(flag>n){
+        	cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
+      	}           
+    }
+}
+
+void peorAjuste(int y, int n, int z, int m[], int temp1, int temp, int po[], int flag, int k, int p[],int i, int j){
+	for(y=1;y<=n;y++){
+        for(z=y;z<=n;z++){
+          	if(m[y]<m[z]){
+          		temp=m[y];
+          		m[y]=m[z];
+          		m[z]=temp;
+          		temp1=po[y]; 
+          		po[y]=po[z];
+          		po[z]=temp1;            
+          	}                 
+        }             
+    }
+    for(i=1;i<=j;i++){
+        flag=1;
+        for(k=1;k<=n;k++){
+          	if(p[i]<=m[k]){
+             	cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
+             	m[k]=m[k]-p[i];
+             	break;           
+          	}
+          	else{
+            	flag++;  
+          	}
+      	}   
+      	if(flag>n){
+        	cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
+      	}           
+    }
 }
