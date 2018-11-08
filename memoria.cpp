@@ -54,12 +54,12 @@ int main(){
 }
 
 void primerAjuste(int p[], int po[], int m[], int n, int j){
-    int flag, i, k;
+    int flag;
 	
-	for(i = 1; i <= j; i++){
+	for(int i = 1; i <= j; i++){
         flag = 1;
-        for(k = 1; k <= n; k++){
-         	if(p[i ]<= m[k]){
+        for(int k = 1; k <= n; k++){
+         	if(p[i] <= m[k]){
 			    cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
              	m[k] = m[k] - p[i];
              	break;           
