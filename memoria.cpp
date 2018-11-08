@@ -11,7 +11,7 @@ int main(){
 	
 	n = rand()%10;//Genera bloques de memoria aleatorios
 	
-    //Ciclo que genera el tamaño de memoria para todos los bloques generados
+    //Ciclo para generar el tamaño de memoria para todos los bloques generados
     for(i = 1; i <= n; i++){
         m[i] = rand()%1000;//Genera el tamaño de memoria para un bloque generado 
         po[i]=i;       
@@ -19,11 +19,10 @@ int main(){
 
     j = rand()%10;//Genera el numero de procesos a ingresar a la memoria
     
-	cout<<"\nenter memory size for\n";
-    for(i=1;i<=j;i++){
-    	cout<<"\nprocess "<<i<<" :\t";
-        cin>>p[i];                 
-    }        
+	//Ciclo para generar el tamaño de memoria para todos los procesos generados
+    for(i = 1; i <= j; i++){
+        p[i] = rand()%1000;//Genera el tamaño de un proceso                
+    }     
     
 	cout<<"\n******** welcome to menu driven program of memory management**********\n1.first fit\n2.best fit\n3.worst fit\nenter choice:\t";
     cin>>c;
