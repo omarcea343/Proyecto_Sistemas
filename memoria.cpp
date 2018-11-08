@@ -6,6 +6,8 @@
 
 using namespace std;
 
+void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m[]);
+
 int main(){
 	int c, i, j, k, n, l, m[10], p[10], po[20], flag, z, y, temp, temp1;//Declaracion de variables
 	
@@ -39,23 +41,7 @@ int main(){
     //Manejo de algoritmo seleccionado
 	switch(c){
     	case 1:
-        	for(i=1;i<=j;i++){
-        		flag=1;
-          		for(k=1;k<=n;k++){
-          			if(p[i]<=m[k]){
-			        	cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
-             			m[k]=m[k]-p[i];
-             			break;           
-          			}
-          			else{
-          				flag++;  
-          			}
-      			}   
-      			if(flag>n){
-      				cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
-      			}           
-      		}
-      		break;
+			primerAjuste(i,j,p,flag,n,k,po,m);
     	case 2:
         	for(y=1;y<=n;y++){
 	        	for(z=y;z<=n;z++){
@@ -119,4 +105,23 @@ int main(){
     }  
 
     return 0;
+}
+
+void primerAjuste(int i, int j, int p[], int flag, int n, int k, int po[], int m[]){
+    for(i=1;i<=j;i++){
+        flag=1;
+          	for(k=1;k<=n;k++){
+          		if(p[i]<=m[k]){
+			        cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB allocated at memory partition:\t"<<po[k];
+             		m[k]=m[k]-p[i];
+             		break;           
+          		}
+          		else{
+          			flag++;  
+          		}
+      		}   
+      		if(flag>n){
+      			cout<<"\nprocess "<<i<<" whose memory size is "<<p[i]<<"KB can't be allocated";       
+      		}           
+      	}
 }
